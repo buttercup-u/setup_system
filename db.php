@@ -1,6 +1,11 @@
 <?php
-// Database name updated to "setup"
-$conn = mysqli_connect("localhost", "root", "", "setup");
+$host = "localhost";
+$user = "root";
+$pass = ""; 
+$dbname = "setup"; // Updated to match your database name
+
+$conn = mysqli_connect($host, $user, $pass, $dbname);
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }

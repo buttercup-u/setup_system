@@ -11,7 +11,8 @@
         :root { --brand-blue: #0056b3; --brand-black: #1a1a1a; --bg-gray: #f4f7f6; }
         body { background-color: var(--bg-gray); color: var(--brand-black); font-family: 'Inter', sans-serif; padding: 40px 20px; }
         
-        .card { border: 2px solid var(--brand-black); border-radius: 0; box-shadow: 10px 10px 0px var(--brand-blue); background: white; width: 100%; max-width: 750px; margin: auto; }
+        /* Brutalist Card Design */
+        .card { border: 2px solid var(--brand-black); border-radius: 0; box-shadow: 10px 10px 0px var(--brand-blue); background: white; width: 100%; max-width: 750px; margin: auto; transition: 0.3s; }
         
         /* High Visibility Logo Header */
         .brand-header { text-align: center; padding: 20px 0; border-bottom: 2px solid var(--bg-gray); margin-bottom: 30px; }
@@ -19,15 +20,18 @@
         .brand-title { color: var(--brand-blue); font-weight: 900; letter-spacing: 2px; margin: 0; font-size: 1.8rem; }
         .brand-subtitle { font-size: 0.8rem; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 1px; }
         
+        /* Form Styling */
         .form-label { font-weight: 800; text-transform: uppercase; font-size: 0.75rem; color: #444; margin-bottom: 6px; }
         .form-control, .form-select { border: 1.5px solid var(--brand-black); border-radius: 0; padding: 12px; font-size: 0.95rem; }
         .form-control:focus, .form-select:focus { border-color: var(--brand-blue); box-shadow: none; background-color: #fdfdfd; }
         
-        .btn-custom { border-radius: 0; font-weight: 800; text-transform: uppercase; border: 2.5px solid var(--brand-black); transition: 0.2s; padding: 14px; font-size: 0.9rem; }
+        /* Button Styling */
+        .btn-custom { border-radius: 0; font-weight: 800; text-transform: uppercase; border: 2.5px solid var(--brand-black); transition: 0.2s; padding: 14px; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; }
         .btn-register { background: white; color: var(--brand-black); }
         .btn-payment { background: var(--brand-blue); color: white; border-color: var(--brand-blue); }
-        .btn-report { background: var(--brand-black); color: white; }
-        .btn-custom:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0px rgba(0,0,0,0.15); }
+        .btn-report { background: var(--brand-black); color: white; text-decoration: none; }
+        
+        .btn-custom:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0px rgba(0,0,0,0.15); color: inherit; }
     </style>
 </head>
 <body>
@@ -39,7 +43,7 @@
         <div class="brand-subtitle">Company Database System • Region 12</div>
     </div>
     
-    <form action="save_company.php" method="POST">
+    <form id="mainForm" action="save_company.php" method="POST">
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label class="form-label">Cooperator Name</label>
@@ -101,24 +105,34 @@
             </div>
         </div>
 
-        <input type="hidden" name="action_type" id="action_type" value="register">
-
         <div class="row gx-2">
             <div class="col-md-4 mb-2">
-                <button type="submit" onclick="document.getElementById('action_type').value='register'" class="btn btn-register btn-custom w-100">Register</button>
+                <button type="submit" onclick="setFormAction('save_company.php')" class="btn btn-register btn-custom w-100">Register</button>
             </div>
             <div class="col-md-4 mb-2">
-                <button type="submit" onclick="document.getElementById('action_type').value='payment'" formnovalidate class="btn btn-payment btn-custom w-100"><i class="bi bi-credit-card"></i> Payment</button>
+                <button type="submit" onclick="setFormAction('payment.php')" class="btn btn-payment btn-custom w-100">
+                    <i class="bi bi-credit-card me-2"></i> Payment
+                </button>
             </div>
             <div class="col-md-4 mb-2">
-                <a href="report.php" class="btn btn-report btn-custom w-100 text-decoration-none d-flex align-items-center justify-content-center">Reports</a>
+                <a href="report.php" class="btn btn-report btn-custom w-100">
+                    <i class="bi bi-journal-text me-2"></i> Reports
+                </a>
             </div>
         </div>
     </form>
 </div>
 
+<div class="text-center mt-4">
+    <a href="admin/login.php" class="text-muted small text-decoration-none">Admin Login</a>
+</div>
+
 <script>
-// (Previous regionData and update functions remain exactly the same)
+// Handles switching the action of the form based on button click
+function setFormAction(actionUrl) {
+    document.getElementById('mainForm').action = actionUrl;
+}
+
 const regionData = {
     "South Cotabato": {
         "Koronadal City": ["Poblacion", "Morales", "Carpenter Hill", "Zone I", "Zone II", "Zone III", "Zone IV"],
@@ -184,3 +198,4 @@ function updateBarangays() {
 }
 </script>
 </body>
+</html>
