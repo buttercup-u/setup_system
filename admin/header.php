@@ -100,9 +100,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
                             <li class="<?php echo ($current_page == 'users.php') ? 'active' : ''; ?>">
                                 <a href="users.php"><i class="nav-icon bi bi-people-fill"></i><span class="nav-title">Admin Users</span></a>
                             </li>
-                            <li class="mt-5">
-                                <a href="logout.php" class="text-danger"><i class="nav-icon bi bi-box-arrow-left"></i><span class="nav-title">Sign Out</span></a>
-                            </li>
                         </ul>
                     </div>
                 </aside>

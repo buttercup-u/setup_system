@@ -53,18 +53,6 @@
             </small>
         </li>
 
-        <li class="nav-item mb-1">
-            <a class="nav-link text-white py-3 px-4 d-flex align-items-center <?php echo (basename($_SERVER['PHP_SELF']) == 'settings.php') ? 'active' : ''; ?>" href="settings.php">
-                <i class="bi bi-gear me-3"></i> Settings
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link text-danger py-3 px-4 d-flex align-items-center" href="logout.php">
-                <i class="bi bi-box-arrow-right me-3"></i> Sign Out
-            </a>
-        </li>
-
     </ul>
 </div>
 
